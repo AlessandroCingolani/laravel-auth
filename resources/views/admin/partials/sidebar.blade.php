@@ -6,7 +6,7 @@
                 <a href="{{ route('admin.home') }}">Dashboard</a>
             </li>
             <li>
-                <a href="{{ route('admin.projects.index') }}">Lista post</a>
+                <a href="{{ route('admin.projects.index') }}">List projects</a>
             </li>
             <li>
                 <a href="{{ route('admin.technologies.index') }}">Technologies</a>
