@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Project;
 use App\Functions\Helper;
 use App\Http\Requests\ProjectRequest;
+use Illuminate\Support\Facades\Storage;
 
 class ProjectController extends Controller
 {
@@ -28,7 +29,7 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        $title = 'Enter Project Name';
+        $title = 'New Project Name';
         $method = 'POST';
         $route = route('admin.projects.store');
         $project = null;
@@ -48,6 +49,15 @@ class ProjectController extends Controller
         if (empty($form_data['start_date'])) {
             $form_data['start_date'] = date('Y-m-d');
         }
+
+        if (array_key_exists('image', $form_data)) {
+
+
+            $form_data['image_original_name'] = $request->file('image')->getClientOriginalName();
+
+            $form_data['image'] = Storage::put('uploads', $form_data['image']);
+        }
+
 
         $new_project = Project::create($form_data);
 
