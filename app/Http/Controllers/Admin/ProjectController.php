@@ -45,10 +45,11 @@ class ProjectController extends Controller
     {
         $form_data = $request->all();
         $form_data['slug'] = Helper::generateSlug($form_data['name'], Project::class);
-        $form_data['start_date'] = date('Y-m-d');
+        if (empty($form_data['start_date'])) {
+            $form_data['start_date'] = date('Y-m-d');
+        }
 
-        dd($form_data);
-        // $new_project = Project::create($form_data);
+        $new_project = Project::create($form_data);
 
         return redirect()->route('admin.projects.show', $new_project);
     }
