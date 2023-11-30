@@ -17,6 +17,7 @@ class Project extends Model
         'end_date',
         'link',
         'description',
-        'image'
+        'image',
+        'image_original_name'
     ];
 }

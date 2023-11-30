@@ -110,6 +110,20 @@ class ProjectController extends Controller
             $form_data['start_date'] = date('Y-m-d');
         }
 
+        if (array_key_exists('image', $form_data)) {
+
+            if ($project->image) {
+
+                Storage::disk('public')->delete($project->image);
+            }
+
+
+            $form_data['image_original_name'] = $request->file('image')->getClientOriginalName();
+
+            $form_data['image'] = Storage::put('uploads', $form_data['image']);
+        }
+
+
         $project->update($form_data);
         return redirect()->route('admin.projects.show', $project);
     }
@@ -122,9 +136,9 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
-        // if($project->image){
-        //     Storage::disk('public')->delete($project->image);
-        // }
+        if($project->image){
+            Storage::disk('public')->delete($project->image);
+        }
 
         $project->delete();
         return redirect()->route('admin.projects.index')->with('success', 'This project has been deleted');

@@ -6,6 +6,10 @@
 
 @section('content')
     <h3>{{ $project->name }}</h3>
+    <div class="w-50">
+        <img class="img-fluid" src="{{ asset('storage/' . $project->image) }}" alt="{{ $project->title }}">
+        <p>{{ $project->image_original_name }}</p>
+    </div>
     <p><strong>Start date:</strong> {{ Helper::formatDate($project->start_date) }}</p>
     <p><strong>End date:</strong> {{ isset($project->end_date) ? "$project->end_date" : 'Work in progress' }}</p>
     <p><strong>Description:</strong> {{ $project->description }}</p>
