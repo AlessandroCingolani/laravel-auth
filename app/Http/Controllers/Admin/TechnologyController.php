@@ -79,9 +79,14 @@ class TechnologyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Technology $technology)
     {
-        //
+        $val_data = $request->validate([
+            'name' => 'required|max:30',
+        ], [
+            'name.required' => 'Name is required',
+            'name.max' => 'Name must be less than :max characters',
+        ]);
     }
 
     /**
