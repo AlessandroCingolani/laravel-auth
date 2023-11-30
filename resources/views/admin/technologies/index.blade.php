@@ -37,16 +37,10 @@
                             <td>{{ $technology->name }}</td>
                             <td class="text-center">
                                 <a class="btn btn-warning" href="#"><i class="fa-solid fa-pencil"></i></a>
-                                <form class="d-inline-block" action={{ route('admin.technologies.destroy', $technology) }}
-                                    method="POST"
-                                    onsubmit="return confirm('Sicuro di eliminare {{ $technology->name }}?')">
-                                    @csrf
-                                    @method('DELETE')
-
-                                    <button type="submit" class="btn btn-danger">
-                                        <i class="fa-regular fa-trash-can"></i>
-                                    </button>
-                                </form>
+                                @include('admin.partials.formDelete', [
+                                    'route' => route('admin.technologies.destroy', $technology),
+                                    'message' => 'Sicuro di eliminare questa tech?',
+                                ])
                             </td>
 
                         </tr>

@@ -37,15 +37,10 @@
                             <td>{{ $type->name }}</td>
                             <td class="text-center">
                                 <a class="btn btn-warning" href="#"><i class="fa-solid fa-pencil"></i></a>
-                                <form class="d-inline-block" action={{ route('admin.types.destroy', $type) }} method="POST"
-                                    onsubmit="return confirm('Sicuro di eliminare {{ $type->name }}?')">
-                                    @csrf
-                                    @method('DELETE')
-
-                                    <button type="submit" class="btn btn-danger">
-                                        <i class="fa-regular fa-trash-can"></i>
-                                    </button>
-                                </form>
+                                @include('admin.partials.formDelete', [
+                                    'route' => route('admin.types.destroy', $type),
+                                    'message' => 'Sicuro di eliminare questo type?',
+                                ])
                             </td>
 
                         </tr>
