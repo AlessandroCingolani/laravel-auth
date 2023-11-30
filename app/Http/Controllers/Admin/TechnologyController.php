@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Technology;
 use Illuminate\Support\Str;
+use App\Functions\Helper;
 
 class TechnologyController extends Controller
 {
@@ -38,8 +39,8 @@ class TechnologyController extends Controller
      */
     public function store(Request $request)
     {
-        $exits = Technology::where('name', $request->name)->first();
-        if ($exits) {
+        $exist = Technology::where('name', $request->name)->first();
+        if ($exist) {
             return redirect()->route('admin.technologies.index')->with('error', 'Technology already exists');
         } else {
             $new_tech = new Technology();
@@ -82,11 +83,31 @@ class TechnologyController extends Controller
     public function update(Request $request, Technology $technology)
     {
         $val_data = $request->validate([
-            'name' => 'required|max:30',
+            'name' => 'required|min:2|max:30',
         ], [
             'name.required' => 'Name is required',
-            'name.max' => 'Name must be less than :max characters',
+            'name.min' => 'Name is must be more than :min characters',
+            'name.max' => 'Name must be less than :max characters'
         ]);
+
+        dd($request->name);
+
+
+
+        $exist = Technology::where('name', $request->name)->first();
+        if ($exist) {
+            return redirect()->route('admin.technologies.index')->with('error', 'Technology already exists');
+        }
+
+
+        $val_data['slug'] = Helper::generateSlug($request->name, Technology::class);
+
+
+
+        $technology->update($val_data);
+
+
+        return redirect()->route('admin.technologies.index')->with('success', 'Technology updated successfully');
     }
 
     /**

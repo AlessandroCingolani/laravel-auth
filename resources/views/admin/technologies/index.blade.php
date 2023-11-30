@@ -45,7 +45,8 @@
                         <tr>
                             <td>
                                 <form action="{{ route('admin.technologies.update', $technology) }}" method="POST"
-                                    id="form-edit">
+                                    id="form-edit-<?= $technology->id ?>">
+
                                     @csrf
                                     @method('PUT')
                                     <input type="text" class="form-hidden" value="{{ $technology->name }}"
@@ -53,8 +54,9 @@
                                 </form>
                             </td>
                             <td class="text-center">
-                                <button onclick="submitForm()" class="btn btn-warning"><i
+                                <button onclick="submitForm()" class="btn btn-warning" id="button-addon2"><i
                                         class="fa-solid fa-pencil"></i></button>
+
                                 @include('admin.partials.formDelete', [
                                     'route' => route('admin.technologies.destroy', $technology),
                                     'message' => 'Sicuro di eliminare questa tech?',
@@ -71,7 +73,7 @@
     </div>
     <script>
         function submitForm() {
-            const form = document.getElementById('form-edit');
+            const form = document.getElementById('form-edit-<?= $technology->id ?>');
             form.submit();
         }
     </script>
