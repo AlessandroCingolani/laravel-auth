@@ -1,7 +1,7 @@
 <aside class="bg-dark">
 
     <nav>
-        <ul>
+        <ul class="p-0">
             <li>
                 <a href="{{ route('admin.home') }}"><i class="fa-solid fa-chart-line"></i>Dashboard</a>
             </li>
