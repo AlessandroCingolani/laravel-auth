@@ -23,7 +23,7 @@ class ProjectRequest extends FormRequest
     {
         return [
             'name' => 'required|min:2|max:100',
-            'text' => 'required|min:5',
+            'description' => 'required|min:5',
             'link' => 'required|min:5'
         ];
     }
