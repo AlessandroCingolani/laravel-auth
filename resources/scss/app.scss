@@ -10,6 +10,14 @@ header {
     .container-fluid {
         height: 100%;
         overflow-y: auto;
+        .form-hidden{
+            width: 100%;
+            border: none;
+            &:focus{
+                border:none;
+                outline: none;
+            }
+        }
     }
 }
 
