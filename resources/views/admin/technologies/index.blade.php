@@ -54,7 +54,7 @@
                                 </form>
                             </td>
                             <td class="text-center">
-                                <button onclick="submitForm()" class="btn btn-warning" id="button-addon2"><i
+                                <button onclick="submitForm('form-edit-<?= $technology->id ?>')" class="btn btn-warning"><i
                                         class="fa-solid fa-pencil"></i></button>
 
                                 @include('admin.partials.formDelete', [
@@ -72,8 +72,8 @@
         </div>
     </div>
     <script>
-        function submitForm() {
-            const form = document.getElementById('form-edit-<?= $technology->id ?>');
+        function submitForm(id) {
+            const form = document.getElementById(id);
             form.submit();
         }
     </script>

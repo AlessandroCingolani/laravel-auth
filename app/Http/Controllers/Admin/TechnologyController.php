@@ -90,9 +90,6 @@ class TechnologyController extends Controller
             'name.max' => 'Name must be less than :max characters'
         ]);
 
-        dd($request->name);
-
-
 
         $exist = Technology::where('name', $request->name)->first();
         if ($exist) {
