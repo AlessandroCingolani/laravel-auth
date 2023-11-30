@@ -18,7 +18,7 @@
                     <td>{{ $project->id }}</td>
                     <td>{{ $project->name }}</td>
                     <td>{{ $project->start_date }}</td>
-                    <td>{{ $project->end_date }}</td>
+                    <td>{{ isset($project->end_date) ? "$project->end_date" : 'Work in progress' }}</td>
                     <td class="text-center">
                         <a href="{{ route('admin.projects.show', $project) }}" class="btn btn-success"> <i
                                 class="fa-solid fa-circle-info"></i></a>
