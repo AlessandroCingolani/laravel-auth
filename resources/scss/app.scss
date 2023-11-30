@@ -19,11 +19,15 @@ aside {
     height:100%;
     ul {
         list-style: none;
+        padding-top: 30px;
+        li {
+            height: 30px;
+        }
         a {
             color: white;
             text-decoration: none;
             &:hover{
-                text-decoration: underline;
+                background-color: green;
             }
         }
     }
