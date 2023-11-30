@@ -5,6 +5,15 @@
     <h1>Technologies</h1>
     <div class="row">
         <div class="col-6">
+            @if ($errors->any())
+                <div class="alert alert-danger" role="alert">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             @if (session('error'))
                 <div class="alert alert-danger" role='alert'>
                     {{ session('error') }}
@@ -34,9 +43,18 @@
                 <tbody>
                     @foreach ($technologies as $technology)
                         <tr>
-                            <td>{{ $technology->name }}</td>
+                            <td>
+                                <form action="{{ route('admin.technologies.update', $technology) }}" method="POST"
+                                    id="form-edit">
+                                    @csrf
+                                    @method('PUT')
+                                    <input type="text" class="form-hidden" value="{{ $technology->name }}"
+                                        name="name" />
+                                </form>
+                            </td>
                             <td class="text-center">
-                                <a class="btn btn-warning" href="#"><i class="fa-solid fa-pencil"></i></a>
+                                <button onclick="submitForm()" class="btn btn-warning"><i
+                                        class="fa-solid fa-pencil"></i></button>
                                 @include('admin.partials.formDelete', [
                                     'route' => route('admin.technologies.destroy', $technology),
                                     'message' => 'Sicuro di eliminare questa tech?',
@@ -50,6 +68,11 @@
                 </tbody>
             </table>
         </div>
-
     </div>
+    <script>
+        function submitForm() {
+            const form = document.getElementById('form-edit');
+            form.submit();
+        }
+    </script>
 @endsection
