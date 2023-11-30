@@ -24,7 +24,7 @@
                 <div class="mb-3">
                     <label for="name" class="form-label">Name project *</label>
                     <input id="name" class="form-control @error('name') is-invalid @enderror" name="name"
-                        type="text" value="{{ old('name', $project?->title) }}">
+                        type="text" value="{{ old('name', $project?->name) }}">
                     @error('name')
                         <p class="text-danger">{{ $message }}</p>
                     @enderror
@@ -32,21 +32,21 @@
                 <div class="mb-3">
                     <label for="link" class="form-label">Link project*</label>
                     <input id="link" class="form-control @error('link') is-invalid @enderror" name="link"
-                        type="text" value="{{ old('link', $project?->title) }}">
+                        type="text" value="{{ old('link', $project?->link) }}">
                     @error('link')
                         <p class="text-danger">{{ $message }}</p>
                     @enderror
                 </div>
                 <div class="form-floating mb-5">
                     <textarea class="form-control" placeholder="Project description *" id="description" name="description"
-                        style="height: 200px">{{ old('description', $project?->text) }}</textarea>
+                        style="height: 200px">{{ old('description', $project?->description) }}</textarea>
                     <label for="description">Description project *</label>
                     @error('description')
                         <p class="text-danger">{{ $message }}</p>
                     @enderror
                 </div>
                 <div class="mb-3">
-                    <label for="start_date" class="form-label fw-bold">Start date *</label>
+                    <label for="start_date" class="form-label fw-bold">Start date </label>
                     <input type="date" class="form-control @error('start_date') is-invalid @enderror" id="start_date"
                         name="start_date" value="{{ old('start_date', $project?->start_date) }}">
                     @error('start_date')
